@@ -25,7 +25,6 @@ footer {
     /*height: 50px;*/
     text-align: center;
     padding: 5px;
-    display: none;
 
 }
 
@@ -142,4 +141,11 @@ footer a img {
     font-size: 55px;
     font-weight: bolder;
     background-color: #245076;
+}
+#serious {
+    display: none;
+    z-index:2; 
+    position: fixed;
+    top: 2%;
+    right: 2%;
 }

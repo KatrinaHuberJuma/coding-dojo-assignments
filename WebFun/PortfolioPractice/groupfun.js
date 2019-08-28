@@ -1,10 +1,10 @@
 $(document).ready(function(){
   $("img").click(function(){
-    $('h1').after("<b> Don't ya know?</b>");
+    $('h1').after("<h1> Don't ya know?</h1>");
     $('h1').addClass("crazy");
     $('.top-row').toggle();
     $('.section-head').hide();
-    $( "footer" ).show( "slow", function() {
+    $( "#serious" ).show( "slow", function() {
     });
   });
 });
