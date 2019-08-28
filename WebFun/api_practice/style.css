@@ -1,0 +1,17 @@
+#current {
+    width: 200px;
+    height: 600px;
+    border: 1px solid blue;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+#poke-imgs {
+    display: inline-block;
+    width: 80%;
+}
+
+h1 {
+     text-transform: capitalize;
+}
