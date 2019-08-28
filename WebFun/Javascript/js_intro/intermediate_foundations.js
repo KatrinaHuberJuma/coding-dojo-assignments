@@ -44,8 +44,8 @@ function fibonacci(idx){
         return 1;
     }
 
-    var num1 = 1;
-    var num2 = 0;
+    var num1 = 0;
+    var num2 = 1;
     for (let i=2; i <=idx; i++){
         if (i%2===0){
             num1 += num2;
@@ -110,40 +110,33 @@ function secondToLast(arr,n){
 // fibonacci(6) = 8 (3+5), 
 // fibonacci(7) = 13 (5+8).
 
-function fibonacci(idx){
+// function fib(n, level=0){
     
-    if (idx===0){
-        return 0;
-    } else if (idx===1){
-        return 1;
-    }
+//     console.log(level, n)
 
-    var num1 = 1;
-    var num2 = 0;
-    for (let i=2; i <=idx; i++){
-        if (i%2===0){
-            num1 += num2;
-            if (i===idx){
-                return num1;
-            }
-        } else {
-            num2 += num1;
-            if (i===idx){
-                return num2;
-            }
-        }
-    }
+//     if (n===0){
+//         return 0;
+//     } 
+//     if (n===1){
+//         return 1;
+//     } 
+    
+    
+//     return fib(n-1, level+1)+ fib(n-2, level+1);
 
-}
+// }
 
+function fib(n, level="||"){
+    var spacers ="|_  "
+    console.log(level + "n= "+ n)
 
-
-function fib(n){
     if (n===0 || n==1){
+        console.log("++++++++++++")
         return n;
     } 
-    var num1 = fib(n-1)
-    var num2 = fib(n-2);
-    return num1+num2;
+    
+    return fib(n-1, level+spacers)+ fib(n-2, level+spacers);
 
 }
+
+console.log("the fib of 5 = " + fib(5))
