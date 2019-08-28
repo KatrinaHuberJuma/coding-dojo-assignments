@@ -3,5 +3,8 @@ $(document).ready(function(){
     $('h1').after("<b> Don't ya know?</b>");
     $('h1').addClass("crazy");
     $('.top-row').toggle();
+    $('.section-head').hide();
+    $( "footer" ).show( "slow", function() {
+    });
   });
 });
