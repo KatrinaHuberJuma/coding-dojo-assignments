@@ -37,13 +37,11 @@ function factorial(num){
 // fibonacci(7) = 13 (5+8).  Do this without using recursion first.  If you don't know what a recursion is yet, don't worry as we'll be introducing this concept in Part 2 of this assignment.
 
 function fibonacci(idx){
-    
     if (idx===0){
         return 0;
     } else if (idx===1){
         return 1;
     }
-
     var num1 = 0;
     var num2 = 1;
     for (let i=2; i <=idx; i++){
@@ -59,7 +57,6 @@ function fibonacci(idx){
             }
         }
     }
-
 }
 
 // console.log(fibonacci(num))
@@ -131,7 +128,7 @@ function fib(n, level="||"){
     console.log(level + "n= "+ n)
 
     if (n===0 || n==1){
-        console.log("++++++++++++")
+        console.log("++++++BASE CASE++++++")
         return n;
     } 
     
