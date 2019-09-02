@@ -1,2 +1,2 @@
-Python/my_envs/py3Env/lib/*
-Python/my_envs/test/testEnv/lib/*
+Python/**/lib
+Python/**/lib
