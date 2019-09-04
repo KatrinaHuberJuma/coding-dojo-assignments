@@ -12,7 +12,11 @@ def greet_other(name):
 
 @app.route("/repeat/<num>/<name>")
 def repeat_name(num, name):
-    return render_template("index.html", goal="repeat", name=name, num=int(num))
+    try:
+        num = int(num)
+    except ValueError:
+        return "please follow the format '.../int/str"
+    return render_template("index.html", goal="repeat", name=name, num=num)
 
 
 if __name__=="__main__":
