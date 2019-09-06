@@ -11,18 +11,16 @@
 
 
 
-{% if name != False %}
-	{% if num > 0 %}
 
 		<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
+			<a href="/destroy_session">Start the jouney with a new kitty!</a>
+{% if name != False %}
+	{% if num > 0 %}
 			<h4>{{ name }} has been here {{ num }} times before! </h4>
-			<!--{{ num }}-->
-		</div>
-		</nav>
+
 	{% else %}
-		<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
+		
 			<h4>Hello {{ name }}!</h4>
 			<!--{{ num }}-->
 		</div>
@@ -34,6 +32,8 @@
 		<input type='submit' value='name'>
 	</form>
 {% endif %}
+		</div>
+		</nav>
 
 <div class="container">
 

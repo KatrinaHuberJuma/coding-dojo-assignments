@@ -1,23 +1,26 @@
 from flask import Flask, render_template, flash, request, redirect, session
-import secret
+# import secret
+import random
+import string
+
 app = Flask(__name__)
 
-app.secret_key = secret.key 
+# app.secret_key = secret.key 
+def random_string(stringLength):
+    """Generate a random string with the combination of lowercase and uppercase letters """
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for i in range(stringLength))
 
-
-@app.route('/name_kitty', methods=['POST'])
-def name_kitty():
-    session['name'] = request.form['kittyname']
-    print(session['name'])
-    return redirect('/')
+app.secret_key = random_string(10)
 
 
 @app.route('/')
 def lost_kitty():
-    print("losing kitty")
     try:
         if not session['name']:
             session['name'] =False
+        else:
+            flash(session['name'] + " is a wonderful name!")
     except:
         session['name'] =False
    
@@ -29,6 +32,20 @@ def lost_kitty():
         session['num_starts'] = -1
         num = session['num_starts']
     return render_template('start.html', name=session['name'], num=session['num_starts'])
+
+@app.route('/destroy_session')
+def new_kitty():
+    app.secret_key = random_string(10) 
+    return redirect('/')
+
+@app.route('/name_kitty', methods=['POST'])
+def name_kitty():
+    session['name'] = request.form['kittyname']
+    print(session['name'])
+    # flash(session['name'] + " is a wonderful name!")
+    return redirect('/')
+
+
 
 @app.route('/backtrack')
 def backtrack():
