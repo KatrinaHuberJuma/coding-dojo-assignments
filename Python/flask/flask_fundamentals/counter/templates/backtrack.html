@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<h1>You see your home but also a butterfly. What do you do?</h1>
+
+  <div class="card-deck">
+	<div class="card" style="width:400px">
+	<img class="card-img-top" src="https://media.giphy.com/media/iHzFB3MU19XFRyyXnQ/giphy.gif" alt="Card image">
+	<div class="card-body">
+		<h4 class="card-title">Turn back the way you came</h4>
+		<p class="card-text">It's nap time</p>
+		<a href="/home" class="btn btn-primary stretched-link">head home!</a>
+	</div>
+	</div> 
+
+	<div class="card" style="width:400px">
+	<img class="card-img-top" src="http://giphygifs.s3.amazonaws.com/media/TWszQ81GTtQje/giphy.gif" alt="Card image">
+	<div class="card-body">
+		<h4 class="card-title">FOLLOW THE PRETTY BUTTERFLY!</h4>
+		<p class="card-text">So pretty!!</p>
+		<a href="/follow_butterfly" class="btn btn-primary stretched-link">FOLLOW THE BUTTERFLY</a>
+	</div>
+	</div>   
+    
+    
+</body>
+</html>
