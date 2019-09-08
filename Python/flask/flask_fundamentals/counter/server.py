@@ -19,8 +19,6 @@ def lost_kitty():
     try:
         if not session['name']:
             session['name'] =False
-        else:
-            flash(session['name'] + " is a wonderful name!")
     except:
         session['name'] =False
    

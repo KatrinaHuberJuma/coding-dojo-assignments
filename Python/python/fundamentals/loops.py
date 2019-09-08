@@ -190,14 +190,27 @@ def maximum(lst):
 
 def ultimate_analysis(lst):
     analysis_dict = {
-        'sum_total'
+        'sum_total': lst[0],
+        'min': lst[0],
+        'max': lst[0],
+        'length': len(lst)
     }
 
     for x in range(1, len(lst), 1):
+        analysis_dict['sum_total'] += lst[x]
+        if lst[x] < analysis_dict['min']:
+            analysis_dict['min'] = lst[x]
+        if lst[x] > analysis_dict['max']:
+            analysis_dict['max'] = lst[x]
+
+    avg = analysis_dict['max']/len(lst)
+    analysis_dict['avg'] = avg
+
+    return analysis_dict
         
 
 
-# print(ultimate_analysis([37,2,1,-9]))
+print(ultimate_analysis([37,2,1,-9]))
 
 # Reverse List - Create a function that takes a list and 
 # return that list with values reversed. Do this without 

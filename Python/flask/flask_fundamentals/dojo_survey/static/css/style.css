@@ -1,0 +1,10 @@
+
+input, label{
+    margin: 20px;
+}
+.card {
+    margin: 50px auto;
+}
+#optional-comment {
+    display: block;
+}

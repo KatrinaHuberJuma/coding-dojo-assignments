@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/play/")
 @app.route("/<color>/<num>/")
-def repeat_name(num='3', color='blue'):
+def playground(num='3', color='blue'):   
     try:
         num = int(num)
     except ValueError:

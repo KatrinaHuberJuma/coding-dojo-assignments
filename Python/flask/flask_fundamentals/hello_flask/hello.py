@@ -7,8 +7,6 @@ def hello_world():
 
 
 
-
-
 @app.route("/users/<username>")
 def show_user_profile(username):
     print(username)

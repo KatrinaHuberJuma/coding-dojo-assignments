@@ -1,2 +1,3 @@
-Python/**/lib
-Python/**/lib
+my_envs/
+*.pyc
+*/secret.sh

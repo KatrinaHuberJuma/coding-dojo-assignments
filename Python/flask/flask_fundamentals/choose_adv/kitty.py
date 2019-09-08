@@ -21,9 +21,9 @@ def follow_person():
 def home():
     return render_template('/home.html')
 
-@app.route('/be_adorable')
-def be_adorable():
-    return render_template('/be_adorable.html')
+# @app.route('/be_adorable')
+# def be_adorable():
+#     return render_template('/be_adorable.html')
 
 @app.route('/new_home')
 def new_home():
