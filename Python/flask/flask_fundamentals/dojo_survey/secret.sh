@@ -1,1 +1,0 @@
-export secret_key="laksjflkasjdflkasfhjalksdfh"
