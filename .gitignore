@@ -1,3 +1,4 @@
 my_envs/
 *.pyc
 secret.sh
+secret.py
