@@ -10,65 +10,22 @@
 </head>
 <body>
 
-    <h1>Hey</h1>
+<h1>All My Friends</h1>
+{% for one_friend in all_friends %}
+    <p>First Name: {{one_friend["first_name"]}}</p>
+    <p>Last Name: {{one_friend["last_name"]}}</p>
+    <p>Occupation: {{one_friend["occupation"]}}</p>
+    <hr>
+{% endfor %}
 
-<!--<div class="jumbotron">
-    <h1 class="display-4">Your gold = {{gold}}</h1>
-    <p class="lead">Visit locations to gather gold</p>
-    <form action="/clear">
-        <div method="post">  -->
-            <!--<input type="hidden" name="clear" value="clear">
-            <button type="submit" class="btn btn-primary btn-lg" value="clear">Clear Score</button>
-        </div>
-    </form>
-</div>   
+<h1>Add a Friend</h1>
+<form action="/create_friend" method="POST">
+    <p>First Name: <input type="text" name="fname"></p>
+    <p>Last Name: <input type="text" name="lname"></p>
+    <p>Occupation: <input type="text" name="occ"></p>
+    <input type="submit" value="Add Friend">
+</form>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-        <form class="card" action="/process" method="post">
-            <div class="card-body form-group">
-                <h5 class="card-title">Farm</h5>
-                <label class="card-text">Earn 10 - 20 golds</label>
-                <input type="hidden" name="location" value="farm">
-                <button type="submit" class="btn btn-primary" value="farm">Submit</button>
-            </div>
-        </form>
-    </div>
-    <div class="col">
-        <form class="card" action="/process" method="post">
-            <div class="card-body form-group">
-                <h5 class="card-title">Cave</h5>
-                <label class="card-text">Earn 5 - 10 golds</label>
-                <input type="hidden" name="location" value="cave">
-                <button type="submit" class="btn btn-primary" value="cave">Submit</button>
-            </div>
-        </form>
-    </div>
-    <div class="col">
-        <form class="card" action="/process" method="post">
-            <div class="card-body form-group">
-                <h5 class="card-title">House</h5>
-                <label class="card-text">Earn 2 - 5 golds</label>
-                <input type="hidden" name="location" value="house">
-                <button type="submit" class="btn btn-primary" value="house">Submit</button>
-            </div>
-        </form>
-    </div>
-    <div class="col">
-        <form class="card" action="/process" method="post">
-            <div class="card-body form-group">
-                <h5 class="card-title">Casino</h5>
-                <label class="card-text">Earn or lose 20 golds</label>
-                <input type="hidden" name="location" value="casino">
-                <button type="submit" class="btn btn-primary" value="casino">Submit</button>
-            </div>
-        </form>
-    </div>
-  </div>
-</div>-->
-
- 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
 </body>
