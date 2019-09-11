@@ -24,6 +24,7 @@
                 <th scope="col">id</th>
                 <th scope="col">full name</th>
                 <th scope="col">email</th>
+                <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                         <td>{{user["id"]}}</td>
                         <th>{{user["first_name"]}} {{user["last_name"]}}</th>
                         <td>{{user["email"]}}</td>
+                        <td><a href="/users/{{user['id']}}/destroy">Delete</a>|<a href="/users/{{user['id']}}/edit">edit</a></td>
                     </tr>
                 {% endfor %}
             
