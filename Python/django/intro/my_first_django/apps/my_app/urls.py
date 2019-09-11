@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^new$', views.new), 
-    url(r'^blogs$', views.index),
+    url(r'^blogs$', views.display),
     url(r'^create$', views.create),  
     url(r'^(?P<blog_id>[0-9])$', views.show),  
     url(r'^(?P<blog_id>[0-9]+)/edit$', views.edit),  

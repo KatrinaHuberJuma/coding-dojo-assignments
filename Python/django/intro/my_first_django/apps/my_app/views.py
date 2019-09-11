@@ -3,14 +3,19 @@ from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
 def index(request):
-    return HttpResponse("this is the equivalent of @app.route('/')!")
+    context = {
+    	"name": "Kat",
+    	"favorite_color": "green",
+    	"pets": ["Raindrop", "Cassie", "Hobbit"]
+    }
+    return render(request, "my_app/index.html", context)
 
 
 def new(request):
     return HttpResponse("NEW THING OMG!")
 
 
-def index(request):
+def display(request):
     return HttpResponse("placeholder to later display a list of all blogs")
 
 
