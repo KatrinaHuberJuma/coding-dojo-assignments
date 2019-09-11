@@ -63,13 +63,13 @@ def desplay_edit_page(user_id):
     
     return render_template("edit_user.html", user=user)
 
-@app.route("/users/<user_id>/update", methods=["PUT"] )
+@app.route("/users/<user_id>/update", methods=["POST"] )
 def edit_user(user_id):
     print("line 27______", user_id)
     mysql = connectToMySQL('users')
-    query = """UPDATE users.users 
-            SET first_name=%(fn)s, last_name=%(ln)s, email=%(em)s, updated_at = NOW(), 
-            WHERE id = %(id)s;"""
+    query = """UPDATE users.users
+            SET first_name=%(fn)s, last_name=%(ln)s, email=%(em)s, updated_at = NOW() 
+            WHERE (id = %(id)s);"""
 # UPDATE `users`.`users` SET `first_name` = 'Katrinahfvkjasfdh' WHERE (`id` = '4');
 
     data = {
@@ -78,11 +78,27 @@ def edit_user(user_id):
         'ln': request.form['lname'],
         'em': request.form['email']
     }
-    user_id = mysql.query_db(query, data)
+    mysql.query_db(query, data)
     print(user_id)
     route_str = "/users/" + str(user_id)
 
     return redirect(route_str)
+
+
+@app.route("/users/<user_id>/destroy")
+def destroy_user(user_id):
+    print("line 27______", user_id)
+    mysql = connectToMySQL('users')
+    query = """DELETE FROM users.users WHERE
+            (id = %(id)s);"""
+# UPDATE `users`.`users` SET `first_name` = 'Katrinahfvkjasfdh' WHERE (`id` = '4');
+
+    data = {
+        'id': user_id
+    }
+    mysql.query_db(query, data)
+
+    return redirect("/users")
 
 
 
