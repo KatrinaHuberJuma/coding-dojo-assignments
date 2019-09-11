@@ -32,21 +32,24 @@ def display_one_user(user_id):
     }
     user = mysql.query_db(query, data)
     
-    return render_template("one_user.html", user=user)
+    return render_template("one_user.html", users=user)
 
 
 @app.route("/users/create", methods=["POST"])
 def add_user():
     mysql = connectToMySQL('users')
-    query = "INSERT INTO `users`.`users` (`first_name`, `last_name`, 'email') VALUES (%(fn)s, %(ln)s, %(em)s,);"
+    query = """INSERT INTO users.users 
+                (first_name, last_name, email, created_at, updated_at) 
+                VALUES (%(fn)s, %(ln)s, %(em)s, NOW(), NOW());"""
     data = {
         'fn': request.form['fname'],
         'ln': request.form['lname'],
         'em': request.form['email']
     }
-    user = mysql.query_db(query, data)
-    print(user)
-    return redirect("/users/<user_id>", user_id = user.id)
+    user_id = mysql.query_db(query, data)
+    route_str = "/users/" + str(user_id)
+
+    return redirect(route_str)
 
 if __name__=="__main__":
     app.run(debug=True)
