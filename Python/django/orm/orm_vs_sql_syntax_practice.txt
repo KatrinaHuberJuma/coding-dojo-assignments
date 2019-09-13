@@ -44,7 +44,7 @@ USERS SHELL ASSIGNMENT
 'Padma'
 
 >>> last_user = Users.objects.last()
->>> last_user.
+>>> last_user
 'Luna'
 
 >>> last_name_pancakes = Users.objects.get(id=3)
