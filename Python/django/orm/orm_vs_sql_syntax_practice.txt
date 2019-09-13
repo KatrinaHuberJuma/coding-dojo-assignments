@@ -27,3 +27,39 @@ luna.save()
 # ... 
 # Padma Patil
 # Luna Lovegood
+
+
+
+USERS SHELL ASSIGNMENT
+
+>>> from apps.hogwarts.models import Users
+>>> Users.objects.create(first_name="Padma", last_name="Patil", email_address="Ravenclaw", age=12)
+>>> Users.objects.create(first_name="Neville", last_name="Longbottom", email_address="iloveherbology@gmail.com", age=12)
+>>> Users.objects.create(first_name="Luna", last_name="Lovegood", email_address="luna@theInquisitor.com", age=12)
+
+>>> users = Users.objects.all()
+
+>>> first_user = Users.objects.first()
+>>> first_user.first_name
+'Padma'
+
+>>> last_user = Users.objects.last()
+>>> last_user.
+'Luna'
+
+>>> last_name_pancakes = Users.objects.get(id=3)
+>>> last_name_pancakes.last_name = "Pancakes"
+>>> last_name_pancakes.save()
+
+>>> sorry_neville = Users.objects.get(id=2)
+>>> sorry_neville.delete()
+(1, {'hogwarts.Users': 1})
+
+
+>>> users_by_first = Users.objects.all().order_by("first_name")
+>>> users_by_first
+<QuerySet [<User object: Luna (Pancakes)>, <User object: Padma (Patil)>]>
+
+>>> users_by_first_desc = Users.objects.all().order_by("-first_name")
+>>> users_by_first_desc
+<QuerySet [<User object: Padma (Patil)>, <User object: Luna (Pancakes)>]>
