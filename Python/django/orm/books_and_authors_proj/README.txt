@@ -48,3 +48,37 @@ for i in range(3):
 
 
 test_dude = Author.objects.create(first_name= "test", last_name= "Tzu")
+>>> test_dude.books.add(Book.objects.get(id=1), Book.objects.get(id=2), Book.objects.get(id=3),Book.objects.get(id=4),Book.objects.get(id=5))
+>>> test_dude.books.all()
+<QuerySet [<Book object: Java, description: about Java>, <Book object: Python, description: about Python>, <Book object: PHP, description: about PHP>, <Book object: Ruby, description: about Ruby>, <Book object: C Sharp, description: about C Sharp>]>
+
+>>> Book.objects.get(id=3).authors.all()
+<QuerySet [<Author object: Fyodor Dostoevksy>, <Author object: test Tzu>]>
+>>> 
+
+>>> Author.objects.get(id=4).books.add(Book.objects.all())
+
+>>> third_book = Book.objects.get(id=3)
+>>> third_book_first_auth = third_book.authors.first()
+>>> third_book.authors.all()
+<QuerySet [<Author object: Fyodor Dostoevksy>, <Author object: test Tzu>, <Author object: William Shakespeare>]>
+>>> third_book.authors.remove(third_book_first_auth)
+>>> third_book.authors.all()
+<QuerySet [<Author object: test Tzu>, <Author object: William Shakespeare>]>
+>>> 
+
+
+>>> Book.objects.get(id=2).authors.add(Author.objects.get(id=5))
+>>> Book.objects.get(id=2).authors.all()
+<QuerySet [<Author object: Emily Dickinson>, <Author object: Fyodor Dostoevksy>, <Author object: test Tzu>, <Author object: William Shakespeare>, <Author object: Lau Tzu>]>
+
+>>> books_of_third_auth = Author.objects.get(id=3).books.all()
+>>> books_of_third_auth
+<QuerySet [<Book object: Java, description: about Java>, <Book object: Python, description: about Python>]>
+
+
+>>> authors_of_book_5 = Book.objects.get(id=5).authors.all()
+>>> authors_of_book_5
+<QuerySet [<Author object: test Tzu>, <Author object: William Shakespeare>]>
+>>> 
+
