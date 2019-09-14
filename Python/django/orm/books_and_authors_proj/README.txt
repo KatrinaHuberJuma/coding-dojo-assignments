@@ -47,16 +47,14 @@ for i in range(3):
 <QuerySet [<Book object: Java, description: about Java>, <Book object: Python, description: about Python>, <Book object: PHP, description: about PHP>]>
 
 
-test_dude = Author.objects.create(first_name= "test", last_name= "Tzu")
->>> test_dude.books.add(Book.objects.get(id=1), Book.objects.get(id=2), Book.objects.get(id=3),Book.objects.get(id=4),Book.objects.get(id=5))
->>> test_dude.books.all()
+>>> Author.objects.get(id=4).books.add(Book.objects.get(id=1), Book.objects.get(id=2), Book.objects.get(id=3),Book.objects.get(id=4),Book.objects.get(id=5))
+>>> tAuthor.objects.get(id=4).all()
 <QuerySet [<Book object: Java, description: about Java>, <Book object: Python, description: about Python>, <Book object: PHP, description: about PHP>, <Book object: Ruby, description: about Ruby>, <Book object: C Sharp, description: about C Sharp>]>
 
 >>> Book.objects.get(id=3).authors.all()
 <QuerySet [<Author object: Fyodor Dostoevksy>, <Author object: test Tzu>]>
 >>> 
 
->>> Author.objects.get(id=4).books.add(Book.objects.all())
 
 >>> third_book = Book.objects.get(id=3)
 >>> third_book_first_auth = third_book.authors.first()
