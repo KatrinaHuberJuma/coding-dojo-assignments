@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include	# added an import!
 # from django.contrib import admin              # comment out, or just delete
+
 urlpatterns = [
     url(r'^', include('apps.books_and_authors_app.urls')),	# use your books_and_authors_app here
     # url(r'^admin/', admin.sites.urls)         # comment out, or just delete
