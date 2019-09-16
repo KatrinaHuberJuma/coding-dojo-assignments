@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TV Shows</title>
+    <!-- Bootstrap Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'tv_shows_app/css/style.css' %}">   
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Books &amp; Authors</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+    </div>
+    <div class="container container-fluid">
+        <div class="row align-items-start">
+            <!--******************FORM***************************-->
+            <div class="col">
+            </div>
+            <div class="col">
+                <h3>Add a tv_show</h3>
+                <form action="/shows/create" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="tv_show_title">Title:</label>
+                        <input type="text" class="form-control" name="tv_show_title" placeholder="My Super Neat tv_show">
+                    </div>
+                    <div class="form-group">
+                        <label for="tv_show_network">network:</label>
+                        <input type="text" class="form-control" name="tv_show_network" placeholder="network">
+                    </div>
+                    <div class="form-group">
+                        <label for="tv_show_description">Description:</label>
+                        <textarea type="text" class="form-control" name="tv_show_description" placeholder="This will be so great!"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+    </div>
+
+</body>
+</html>
