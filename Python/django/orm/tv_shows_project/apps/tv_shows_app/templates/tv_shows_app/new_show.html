@@ -28,6 +28,13 @@
             <div class="col">
             </div>
             <div class="col">
+                    {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 <h3>Add a tv_show</h3>
                 <form action="/shows/create" method="post">
                 {% csrf_token %}
@@ -36,8 +43,17 @@
                         <input type="text" class="form-control" name="tv_show_title" placeholder="My Super Neat tv_show">
                     </div>
                     <div class="form-group">
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
                         <label for="tv_show_network">network:</label>
                         <input type="text" class="form-control" name="tv_show_network" placeholder="network">
+                        </div>
+                        <div class="col">
+                        <label for="tv_show_relase_date">Release:</label>
+                        <input type="date" class="form-control" name="tv_show_relase_date">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="tv_show_description">Description:</label>

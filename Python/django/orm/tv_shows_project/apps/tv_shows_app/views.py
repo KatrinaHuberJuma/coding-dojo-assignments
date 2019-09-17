@@ -1,5 +1,6 @@
 # tv_shows_app APP LEVEL VIEWS
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages
 from .models import Tv_show
 
 
@@ -12,10 +13,20 @@ def index(request):
 
 def create_show(request):
     if request.method == "POST":
-        title = request.POST["tv_show_title"]
-        # TODO network = request.POST["show_network"]
-        description = request.POST["tv_show_description"]
-        Tv_show.objects.create(title=title, description=description)
+        # pass the post data to the method we wrote and save the response in a variable called errors
+        errors = Tv_show.objects.basic_validator(request.POST)      
+        # check if the errors dictionary has anything in it
+        if len(errors) > 0:
+            # if the errors dictionary contains anything, loop through each key-value pair and make a flash message
+            for key, value in errors.items():
+                messages.error(request, value)
+            # redirect the user back to the form to fix the errors
+            return redirect('/shows/new')
+        else:
+            title = request.POST["tv_show_title"]
+            # TODO network = request.POST["show_network"]
+            description = request.POST["tv_show_description"]
+            Tv_show.objects.create(title=title, description=description)
         return redirect("/shows")
 
 
@@ -38,15 +49,23 @@ def edit_show(request, show_id):
 
 def update_show(request, show_id):
     if request.method == "POST":
-        this_show = Tv_show.objects.get(id=show_id)
-        this_show.title = request.POST["tv_show_title"]
-        this_show.description = request.POST["tv_show_description"]
-        this_show.network = request.POST["tv_show_network"]
-        this_show.save()
-        # url = "shows/" + str(show_id)
-        # print(url)
-
-    return redirect("/shows")
+        # pass the post data to the method we wrote and save the response in a variable called errors
+        errors = Tv_show.objects.basic_validator(request.POST)
+        # check if the errors dictionary has anything in it
+        if len(errors) > 0:
+            # if the errors dictionary contains anything, loop through each key-value pair and make a flash message
+            for key, value in errors.items():
+                messages.error(request, value)
+            # redirect the user back to the form to fix the errors
+            return redirect('/shows/' + str(show_id) + '/edit')
+        else:
+            this_show = Tv_show.objects.get(id=show_id)
+            this_show.title = request.POST["tv_show_title"]
+            this_show.description = request.POST["tv_show_description"]
+            this_show.network = request.POST["tv_show_network"]
+            this_show.save()
+            url = "/shows/" + str(show_id)
+    return redirect(url)
 
 
 def destroy_show(request, show_id):

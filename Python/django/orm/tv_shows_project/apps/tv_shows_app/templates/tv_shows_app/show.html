@@ -39,7 +39,14 @@
                             <div class="card-text"><small class="text-muted">
                                 <p>Network: {{show.network}} </p>
                             </small>
-                            <a href="shows/{{show.id}}/edit">Edit</a>|<a href="shows/{{ show.id }}/destroy">Delete</a>
+                            
+                            <form action="/shows/{{show.id}}/edit">
+                                    <button type="submit" class="btn btn-primary inline-button">Edit</button>
+                                </form>
+                                <form action="/shows/{{show.id}}/destroy" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary inline-button">Delete</button>
+                                </form>
                         </div>
                     </div>
                 </div>
