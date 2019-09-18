@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login and Registration</title>
-</head>
+    <title>Log&amp;Reg</title>
+    <!-- Bootstrap Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'login_app/css/style.css' %}">    
+    <!--<script src="{% static 'gold_dig/js/script.js' %}"></script>-->
+    </head>
 <body>
-    <h1>this is running</h1>
+    <div class="container container-fluid">
+        <div class="row align-items-start">
+            <!--******************Login***************************-->
+            <div class="col">
+                <h3>User Login</h3>
+                <form action="users/login_user" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user_title">Name:</label>
+                        <input type="text" class="form-control" name="user_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_description">Password:</label>
+                        <textarea type="password" class="form-control" name="user_description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login!</button>
+                </form>
+            </div>
+            <!--******************Reg***************************-->
+            <div class="col">
+                <h3>New? Register!</h3>
+                <form action="users/add_user" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user_title">Title:</label>
+                        <input type="text" class="form-control" name="user_title" placeholder="My Super Neat user">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_description">Description:</label>
+                        <textarea type="text" class="form-control" name="user_description" placeholder="This will be so great!"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
