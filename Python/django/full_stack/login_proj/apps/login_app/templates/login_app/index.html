@@ -18,11 +18,22 @@
     </head>
 <body>
     <div class="container container-fluid">
+            <h1 class="display-4">What if you could login and/or rgister to an app that does nothing?</h1>
+            <h3>You know you want to</h3>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <div class="alert alert-warning" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    <div class="container container-fluid">
         <div class="row align-items-start">
             <!--******************Login***************************-->
             <div class="col">
                 <h3>User Login</h3>
-                <form action="users/user" method="post">
+                <form action="users/login" method="post">
                 {% csrf_token %}
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -38,7 +49,7 @@
             <!--******************Reg***************************-->
             <div class="col">
                 <h3>New? Register!</h3>
-                <form action="users/add_user" method="post">
+                <form action="users/new" method="post">
                 {% csrf_token %}
                     <div class="form-group">
                         <label for="first_name">First Name:</label>
@@ -53,8 +64,12 @@
                         <input type="text" class="form-control" name="email">
                     </div>
                     <div class="form-group">
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" class="form-control" name="birthday">
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password"></input>
+                        <input type="password" class="form-control" name="password"></input>
                     </div>
                     <div class="form-group">
                         <label for="confirm_password">Confirm Password</label>
