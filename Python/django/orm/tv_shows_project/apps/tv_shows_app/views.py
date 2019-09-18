@@ -71,6 +71,5 @@ def update_show(request, show_id):
 def destroy_show(request, show_id):
     if request.method == "POST":
         this_show = Tv_show.objects.get(id=show_id)
-        print(this_show)
-        print(this_show.delete())
+        this_show.delete()
     return redirect("/shows")
