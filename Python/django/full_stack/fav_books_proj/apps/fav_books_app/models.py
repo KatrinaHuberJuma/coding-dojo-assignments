@@ -2,7 +2,25 @@ from __future__ import unicode_literals
 from django.db import models
 import re
 
-# Create your models here.
+class BookManager(models.Manager):
+    def basic_validator(self, postData):
+        errors = {}
+        if len(postData['book_title']) < 1:
+            errors["title"] = "title should exist"
+        if len(postData['book_description']) < 5:
+            errors["description"] = "description should be at least 5 characters"
+        return errors
+
+
+class Book(models.Model):
+    objects = BookManager()
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    def __repr__(self):
+        return f"<Book object: {self.title}, description: {self.description}>"
+        
 
 class UserManager(models.Manager):
     def basic_validator(self, postData):
@@ -19,23 +37,17 @@ class UserManager(models.Manager):
             errors['email'] = ("Invalid email address!")
         return errors
 
-# class MessageManager(models.Manager):
-#     pass
-
 
 class User(models.Model):
     objects = UserManager()
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    birthday = models.DateField(auto_now=False, auto_now_add=False)
+    fav_books = models.ManyToManyField(Book, related_name="fans")
     # email = models.EmailField(max_length=255) TODO: read up on this
-    hashed_pw = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     def __repr__(self):
-        return f"<User Object: {self.first_name} {self.last_name}, email: {self.email} hashed password: {self.hashed_pw}"
+        return f"<User Object: {self.first_name} {self.last_name}, email: {self.email} password: {self.password}>"
 
-
-# class Message(models.Model):
-#     objects = MessageManager()
-#     content = models.TextField()
-#     birthday = models.DateField(auto_now=False, auto_now_add=False)
