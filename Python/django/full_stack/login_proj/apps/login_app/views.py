@@ -9,8 +9,23 @@ def root(request):
     return render(request, "login_app/index.html")
 
 def login(request):
-    
-    return redirect("users/")
+    errors = {}
+    if request.method == "POST":
+        possible_user = User.objects.filter(email=request.POST["email"])
+        try:
+            this_user = possible_user[0]
+            if request.POST["password"] == this_user.hashed_pw:
+                return redirect("/users/success")
+            errors['password_oopsie_error']= "You seem to have forgotten your password. Too bad for you, we for sure don't save your plaintext password so get a new email and come back."
+        except IndexError:
+            errors['email_oopsie_error']=  "No user exists with this email, go ahead and register!"
+    if len(errors) > 0:
+        # if the errors dictionary contains anything, loop through each key-value pair and make a flash message
+        for key, value in errors.items():
+            messages.error(request, value)
+        # redirect the user back to the form to fix the errors
+        
+    return redirect("/users")
 
 def reg(request):
     if request.method == "POST":
