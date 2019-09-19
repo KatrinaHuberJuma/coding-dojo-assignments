@@ -15,16 +15,17 @@ def login(request):
         try:
             this_user = possible_user[0]
             if request.POST["password"] == this_user.hashed_pw:
+                request.session['first_name'] = this_user.first_name
+                request.session['last_name'] = this_user.last_name
                 return redirect("/users/success")
             errors['password_oopsie_error']= "You seem to have forgotten your password. Too bad for you, we for sure don't save your plaintext password so get a new email and come back."
-        except IndexError:
+        except:
             errors['email_oopsie_error']=  "No user exists with this email, go ahead and register!"
     if len(errors) > 0:
         # if the errors dictionary contains anything, loop through each key-value pair and make a flash message
         for key, value in errors.items():
             messages.error(request, value)
         # redirect the user back to the form to fix the errors
-        
     return redirect("/users")
 
 def reg(request):
@@ -46,9 +47,16 @@ def reg(request):
             last_name = request.POST["last_name"]
             email = request.POST["email"]
             birthday = request.POST["birthday"]
-            User.objects.create(first_name=first_name, last_name=last_name, email=email, hashed_pw=password, birthday=birthday)
+            new_user = User.objects.create(first_name=first_name, last_name=last_name, email=email, hashed_pw=password, birthday=birthday)
+            request.session['first_name'] = new_user.first_name
+            request.session['last_name'] = new_user.last_name
     return redirect("/users/success")
 
 def success(request):
-    
-    return render(request, "login_app/success.html")
+    if "first_name" in request.session:
+        return render(request, "login_app/success.html")
+    return redirect('/users')
+
+def logout(request):
+    request.session.clear()
+    return redirect('/users')

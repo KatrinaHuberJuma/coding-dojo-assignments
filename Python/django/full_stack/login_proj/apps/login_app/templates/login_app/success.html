@@ -19,10 +19,11 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">SUCCESS OMG!</h1>
+            <h1>{{ request.session.first_name }} {{ request.session.last_name }} </h1>
+            <h2 class="display-4">SUCCESS OMG!</h2>
             <p class="lead">much wow.</p>
         </div>
     </div>
-
+<a href="/users/logout">LOG {{ request.session.first_name }} OUT OF HERE!</a>
 </body>
 </html>

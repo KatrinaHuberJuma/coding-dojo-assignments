@@ -7,6 +7,9 @@ import re
 class UserManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
+        for existing_user in User.objects.all():
+            if existing_user.email == postData['email']:
+                errors["email_exists"] = "We already have a user with this email"
         if len(postData['first_name']) < 2:
             errors["first_name"] = "first name should be at least 2 characters"
         if len(postData['last_name']) < 2:
