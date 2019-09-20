@@ -45,14 +45,16 @@
             <div class="col">
             <h3>View a Book</h3>
                 
-                    <ul>
-                    {% for book in books %}
-                            <li>
-                                <h3><a href="/books/{{book.id}}">{{book.title}}</a></h3>
-                            <td>{{book.description}}</td>
-                            </li>
-                    {% endfor %}
-                    </ul>
+                <ul>
+                {% for book in books %}
+                        <li>
+                            <h3><a href="/books/{{book.id}}">{{book.title}}</a></h3>
+                            <p>{{book.fans.count}} fans</p>
+                            <P>added by {{book.fans.first.first_name}} {{book.fans.first.last_name}}</P>
+                        <p>{{book.description}}</p>
+                        </li>
+                {% endfor %}
+                </ul>
                     
             </div>
         </div>
